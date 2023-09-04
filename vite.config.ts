@@ -14,5 +14,13 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // 添加全局样式引用
+        // additionalData: `@import "./src/style/mixin.scss";`
+      }
+    }
   }
 })
