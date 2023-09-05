@@ -2,7 +2,7 @@
   <div>
     <button @click="click">Add</button>
     <ul style="height: 300px; overflow-y: auto" ref="ulRef">
-      <li v-for="item in list" :key="item.id">{{ item.text }}</li>
+      <li v-for="(item) in list" :key="item.id">{{ item.text }}</li>
       <!-- {{
         text
       }} -->
@@ -18,7 +18,19 @@ const list = ref<any>([])
 
 onMounted(() => {
   startDOMObserver(ulRef.value)
-  console.log('onMounted...' + new Date().getTime())
+
+
+  // console.log('Start')
+  // setTimeout(() => {
+  //   console.log('Timeout (Macro-task)')
+  // }, 0)
+  // Promise.resolve().then(() => {
+  //   console.log('Promise (Micro-task)')
+  // })
+  // console.log('End')
+  // console.log("====================================");
+
+
   for (let i = 0; i < 50; i++) {
     list.value.push({
       text: 'Item-' + i
@@ -30,7 +42,8 @@ const click = () => {
   // list.value.push({
   //   text: 'Item-'
   // })
-  list.value.shift();
+  // list.value.shift()
+  list.value.pop();
 }
 
 const startDOMObserver = (el: Node) => {
